@@ -17,7 +17,8 @@ export async function POST(req: Request) {
     // 2. Fetch Knowledge Base (FAQs) for this property
     const { data: faqs } = await supabase
       .from('faqs')
-      .filter('property_id', 'eq', propertyId);
+      .select('*')
+      .eq('property_id', propertyId);
 
     // 3. Mock AI Logic (In V2 we'll send this to OpenAI/Gemini)
     await new Promise((resolve) => setTimeout(resolve, 1000));
